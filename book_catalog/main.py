@@ -1,13 +1,16 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 from typing import List
+from typing import Optional
 
 from models import Book, Base
 from schemas import BookBase, BookCreate, BookInDB, BookUpdate
 from db import engine, get_db
 
+# Create tables if they do not exist
 Base.metadata.create_all(bind=engine)
 
+# Initialize FastAPI app
 app = FastAPI()
 
 # Endpoint to create a new book
