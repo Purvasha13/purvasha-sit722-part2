@@ -5,16 +5,16 @@ FROM python:3.9-slim
 WORKDIR /usr/src/app
 
 # Copy the dependencies file to the working directory
-COPY ./book_catalog/requirements.txt ./
+COPY book_catalog/requirements.txt ./
 
 # Install any dependencies specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application source code to the working directory
-COPY ./book_catalog ./book_catalog
+COPY book_catalog/ ./book_catalog/
 
 # Expose the port the app runs on
-EXPOSE 5000
+EXPOSE 8000
 
 # Define the command to run the application
-CMD ["uvicorn", "book_catalog.main:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["uvicorn", "book_catalog.main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -3,9 +3,10 @@ from sqlalchemy.orm import Session
 from typing import List
 from typing import Optional
 
-from models import Book, Base
-from schemas import BookBase, BookCreate, BookInDB, BookUpdate
-from db import engine, get_db
+from .models import Book, Base
+from .schemas import BookBase, BookCreate, BookInDB, BookUpdate
+from .db import engine, get_db
+from .config import settings
 
 # Create tables if they do not exist
 Base.metadata.create_all(bind=engine)
@@ -56,3 +57,7 @@ def delete_book(book_id: int, db: Session = Depends(get_db)):
     db.delete(db_book)
     db.commit()
     return db_book
+
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the Book Catalog API"}
