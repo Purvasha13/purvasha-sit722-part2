@@ -3,10 +3,10 @@ from sqlalchemy.orm import Session
 from typing import List
 from typing import Optional
 
-from .models import Book, Base
-from .schemas import BookBase, BookCreate, BookInDB, BookUpdate
-from .db import engine, get_db
-from .config import settings
+from book_catalog.models import Book, Base
+from book_catalog.schemas import BookBase, BookCreate, BookInDB, BookUpdate
+from book_catalog.db import engine, get_db
+from book_catalog.config import settings
 
 # Create tables if they do not exist
 Base.metadata.create_all(bind=engine)
